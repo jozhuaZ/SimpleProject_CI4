@@ -16,3 +16,47 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 /vendor/
+
+
+# ----------------------------------------------------------------
+# CodeIgniter 4 defaults
+# ----------------------------------------------------------------
+
+# System files (do not edit, always pulled via Composer)
+vendor/
+composer.lock
+
+# Environment config
+.env
+
+# Logs
+writable/logs/*
+!writable/logs/index.html
+
+# Cache
+writable/cache/*
+!writable/cache/index.html
+
+# Sessions
+writable/session/*
+!writable/session/index.html
+
+# Uploads
+writable/uploads/*
+!writable/uploads/index.html
+
+# Debug toolbar
+writable/debugbar/*
+!writable/debugbar/index.html
+
+# PHPUnit results / coverage
+phpunit.xml
+phpunit.xml.dist
+tests/_output/
+coverage/
+
+# Node / Frontend (if using npm, vite, etc.)
+node_modules/
+npm-debug.log
+yarn.lock
+package-lock.json
