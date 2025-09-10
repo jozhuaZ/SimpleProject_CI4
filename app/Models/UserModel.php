@@ -29,4 +29,23 @@ class UserModel extends Model
         }
         return $data;
     }
+
+    public function verifyUser(string $email, string $password)
+    {
+        try {
+            if (!isset($email) || !isset($password)) {
+                return null;
+            }
+
+            $user = $this->where('email', $email)->first();
+            if ($user && password_verify($password, $user['password'])) {
+                return $user;
+            }
+
+            return null;
+        } catch (\Throwable $e) {
+            log_message('error', $e->getMessage());
+            return null;
+        }
+    }
 }
