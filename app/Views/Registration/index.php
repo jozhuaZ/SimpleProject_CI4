@@ -21,7 +21,7 @@
 
 
     <h1>Register Now!</h1>
-        <form action="<?= base_url('user/register') ?>" method="POST">
+        <form action="<?= base_url('u/register') ?>" method="POST">
 
         <label for="firstname">First Name</label>
         <input type="text" name="firstname" required>
