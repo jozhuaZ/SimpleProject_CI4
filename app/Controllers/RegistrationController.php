@@ -65,7 +65,7 @@ class RegistrationController extends BaseController
 
             $userModel->insert($data);
 
-            return redirect()->to(base_url('/'))->with('success', 'User created successfully!');
+            return redirect()->to(base_url('/login'))->with('success', 'User created successfully!');
         } catch (\Throwable $e) {
             log_message('error', 'Registration failed: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Registration failed. Please try again later.');
