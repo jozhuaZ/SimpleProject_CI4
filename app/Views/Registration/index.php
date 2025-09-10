@@ -6,9 +6,22 @@
     <title>Registration Page</title>
 </head>
 <body>
-    
-    <form method="<?= base_url('user/register') ?>" method="post">
-        <h1>Register Now!</h1>
+    <?php if(session()->getFlashdata('error')): ?>
+        <h3>
+            <?= session()->getFlashdata('error') ?>
+        </h3>
+    <?php endif; ?>
+    <?php if(session()->getFlashdata('errors')): ?>
+        <ul>
+            <?php foreach(session()->getFlashdata('errors') as $error): ?>
+                <li><?= esc($error) ?></li>
+            <?php endforeach ?>
+        </ul>
+    <?php endif; ?>
+
+
+    <h1>Register Now!</h1>
+        <form action="<?= base_url('user/register') ?>" method="POST">
 
         <label for="firstname">First Name</label>
         <input type="text" name="firstname" required>
@@ -32,10 +45,9 @@
         <input type="email" name="email" required>
         
         <label for="password">Password</label>
-        <input type="password" name="password" maxlength="8" required>
+        <input type="password" name="password" minlength="8" required>
 
         <input type="submit" value="Register">
     </form>
-
 </body>
 </html>

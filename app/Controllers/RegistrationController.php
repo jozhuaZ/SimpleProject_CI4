@@ -31,8 +31,23 @@ class RegistrationController extends BaseController
                 'password'  => 'required|min_length[8]',
             ];
 
-            if (! $this->validate($rules)) {
-                return redirect()->back()->withInput()->with('error', $this->validator->listErrors());
+            $messages = [
+                'email' => [
+                    'is_unique'   => 'This email is already registered.',
+                    'valid_email' => 'Please enter a valid email address.'
+                ],
+                'username' => [
+                    'is_unique' => 'This username is already taken.'
+                ],
+                'password' => [
+                    'min_length' => 'Password must be at least 8 characters long.'
+                ]
+            ];
+
+            if (!$this->validate($rules, $messages)) {
+                return redirect()->back()
+                    ->withInput()
+                    ->with('errors', $this->validator->getErrors());
             }
 
             $userModel = new UserModel();
@@ -50,7 +65,7 @@ class RegistrationController extends BaseController
 
             $userModel->insert($data);
 
-            return redirect()->to('/')->with('success', 'User created successfully!');
+            return redirect()->to(base_url('/'))->with('success', 'User created successfully!');
         } catch (\Throwable $e) {
             log_message('error', 'Registration failed: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Registration failed. Please try again later.');
