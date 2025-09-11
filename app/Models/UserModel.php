@@ -18,6 +18,7 @@ class UserModel extends Model
         'email',
         'password'
     ];
+    // protected $hidden = ['password'];
 
     protected $beforeInsert = ['hashPassword'];
     protected $beforeUpdate = ['hashPassword'];
@@ -47,5 +48,29 @@ class UserModel extends Model
             log_message('error', $e->getMessage());
             return null;
         }
+    }
+
+    public function register(array $data): bool
+    {
+        try {
+            return $this->insert($data) !== false;
+        } catch (\Throwable $e) {
+            log_message('error', $e->getMessage());
+            return false;
+        }
+    }
+
+    public function fetchUsers()
+    {
+        $users = $this->select( 'id,
+                                firstname, 
+                                middlename,
+                                lastname,
+                                username,
+                                email,
+                                address,
+                                contact_number' )
+                      ->findAll();
+        return $users;
     }
 }
