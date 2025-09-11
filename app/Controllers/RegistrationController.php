@@ -52,7 +52,7 @@ class RegistrationController extends BaseController
 
             $userModel = new UserModel();
 
-            $data = [
+            $userData = [
                 'firstname' => $request->getPost('firstname'),
                 'middlename' => $request->getPost('middlename'),
                 'lastname' => $request->getPost('lastname'),
@@ -63,9 +63,9 @@ class RegistrationController extends BaseController
                 'password' => $request->getPost('password')
             ];
 
-            $userModel->insert($data);
-
-            return redirect()->to(base_url('/login'))->with('success', 'User created successfully!');
+            if ($userModel->register($userData)) {
+                return redirect()->to(base_url('/login'))->with('success', 'User created successfully!');
+            }
         } catch (\Throwable $e) {
             log_message('error', 'Registration failed: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Registration failed. Please try again later.');
