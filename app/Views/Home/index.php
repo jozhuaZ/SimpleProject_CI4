@@ -19,7 +19,7 @@
     <?php endif; ?>
     
     <h1>Home Page</h1>
-    <p>Hello <?php echo $user['firstname'] . " " . $user['middlename'] ?></p>
+    <p>Hello <?php echo $user['firstname'] . " " . $user['middlename'] . " " . $user['lastname']?></p>
 
     <a href="<?= base_url('u/logout') ?>">Logout</a>
 </body>
