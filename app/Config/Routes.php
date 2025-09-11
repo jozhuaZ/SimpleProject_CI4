@@ -18,3 +18,7 @@ $routes->get('/login', 'LoginController::index');
 $routes->post('/u/login', 'LoginController::loginUser');
 // Logout
 $routes->get('/u/logout', 'LoginController::logout');
+
+
+// Admin
+$routes->get('/a/user-record', 'AdminController::userRecord');
