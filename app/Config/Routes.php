@@ -16,3 +16,5 @@ $routes->post('/u/register', 'RegistrationController::registerUser');
 // Login
 $routes->get('/login', 'LoginController::index');
 $routes->post('/u/login', 'LoginController::loginUser');
+// Logout
+$routes->get('/u/logout', 'LoginController::logout');
