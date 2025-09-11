@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Login Page</title>
 </head>
 <body>
     <?php if(session()->getFlashdata('success')): ?>
@@ -17,10 +17,17 @@
             <?= session()->getFlashdata('error') ?>
         </h3>
     <?php endif; ?>
-    
-    <h1>Home Page</h1>
-    <p>Hello <?php echo $user['firstname'] . " " . $user['middlename'] ?></p>
 
-    <a href="<?= base_url('u/logout') ?>">Logout</a>
+    <h1>Login Page</h1>
+    
+    <form action="<?= base_url('u/login') ?>" method="post">
+        <label for="email">Email/Username</label>
+        <input type="email" name="email" required>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" required>
+
+        <input type="submit" value="Login">
+    </form>
 </body>
 </html>
