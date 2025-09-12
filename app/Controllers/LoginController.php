@@ -42,11 +42,11 @@ class LoginController extends BaseController
                 $session->set($sessionData);
                 return redirect()->to(base_url('/'))->with('success', 'Welcome back ' . $sessionData['username']);
             }
-            return redirect()->back()->withInput()->with('error', 'No user found.');
+            return redirect()->to(base_url('login'))->withInput()->with('error', 'No user found.');
 
         } catch (\Throwable $e) {
             log_message('error', $e->getMessage());
-            return redirect()->back()->withInput()->with('error', 'Login Failed. Please try again later.');
+            return redirect()->to(base_url('login'))->withInput()->with('error', 'Login Failed. Please try again later.');
         }
     }
 

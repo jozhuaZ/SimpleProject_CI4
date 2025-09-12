@@ -64,11 +64,11 @@ class RegistrationController extends BaseController
             ];
 
             if ($userModel->register($userData)) {
-                return redirect()->to(base_url('/login'))->with('success', 'You have successfully registered!');
+                return redirect()->to(base_url('login'))->with('success', 'You have successfully registered!');
             }
         } catch (\Throwable $e) {
             log_message('error', 'Registration failed: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Failed to register your account. Please try again later.');
+            return redirect()->to('login')->with('error', 'Failed to register your account. Please try again later.');
         }
     }
 }
