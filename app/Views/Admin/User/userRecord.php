@@ -18,7 +18,7 @@
     <?php if(session()->getFlashdata('errors')): ?>
         <ul>
             <?php foreach(session()->getFlashdata('errors') as $error): ?>
-                <li><?= esc($error) ?></li>
+                <li style="color: red;"><?= esc($error) ?></li>
             <?php endforeach ?>
         </ul>
     <?php endif; ?>
