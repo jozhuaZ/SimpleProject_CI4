@@ -57,7 +57,7 @@ class AdminController extends BaseController
                 'middlename' => 'required|max_length[255]',
                 'lastname' => 'required|max_length[255]',
                 'address' => 'required|max_length[255]',
-                'contact_number' => 'required|min_length[11]',
+                'contact_number' => "required|min_length[11]|is_unique[user.contact_number,id,{$id}]",
                 'email'     => "required|valid_email|is_unique[user.email,id,{$id}]",
                 'username'  => "required|is_unique[user.username,id,{$id}]",
             ];
@@ -69,11 +69,14 @@ class AdminController extends BaseController
 
             $messages = [
                 'email' => [
-                    'is_unique'   => 'This email is already registered.',
+                    'is_unique'   => 'Email is already registered.',
                     'valid_email' => 'Please enter a valid email address.'
                 ],
                 'username' => [
-                    'is_unique' => 'This username is already taken.'
+                    'is_unique' => 'Username is already taken.'
+                ],
+                'contact_number' => [
+                    'is_unique' => 'Contact number is already taken.'
                 ],
                 'password' => [
                     'min_length' => 'Password must be at least 8 characters long.'
