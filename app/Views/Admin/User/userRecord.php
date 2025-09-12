@@ -92,7 +92,7 @@
                 <input type="text" name="contact_number" id="contact_number" maxlength="11" required>
 
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" minlength="8" required>
+                <input type="password" name="password" id="password" minlength="8">
 
                 <button type="submit" onclick="<?= base_url('a/user-record/update/' . $user['id']) ?>">Save</button>
                 <button type="button" onclick="document.getElementById('editForm').style.display='none'">Cancel</button>
