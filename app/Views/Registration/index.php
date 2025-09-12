@@ -6,8 +6,12 @@
     <title>Registration Page</title>
 </head>
 <body>
-    <?php if(session()->getFlashdata('error')): ?>
-        <h3>
+    <?php if(session()->getFlashdata('success')): ?>
+        <h3 style="color: green;">
+            <?= session()->getFlashdata('success') ?>
+        </h3>
+    <?php elseif(session()->getFlashdata('error')): ?>
+        <h3 style="color: red;">
             <?= session()->getFlashdata('error') ?>
         </h3>
     <?php endif; ?>

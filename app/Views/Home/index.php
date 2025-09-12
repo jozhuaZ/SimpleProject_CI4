@@ -10,9 +10,7 @@
         <h3 style="color: green;">
             <?= session()->getFlashdata('success') ?>
         </h3>
-    <?php endif; ?>
-
-    <?php if(session()->getFlashdata('error')): ?>
+    <?php elseif(session()->getFlashdata('error')): ?>
         <h3 style="color: red;">
             <?= session()->getFlashdata('error') ?>
         </h3>
