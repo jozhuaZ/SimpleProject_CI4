@@ -73,4 +73,14 @@ class UserModel extends Model
                       ->findAll();
         return $users;
     }
+
+    public function deleteUserById(int $id): bool
+    {
+        try {
+            return $this->delete($id) !== false;
+        } catch (\Throwable $e) {
+            log_message('error', $e->getMessage());
+            return false;
+        }
+    }
 }

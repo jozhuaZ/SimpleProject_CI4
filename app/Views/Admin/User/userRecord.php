@@ -6,6 +6,15 @@
     <title>Admin Panel - Handle User</title>
 </head>
 <body>
+    <?php if(session()->getFlashdata('success')): ?>
+        <h3 style="color: green;">
+            <?= session()->getFlashdata('success') ?>
+        </h3>
+    <?php elseif(session()->getFlashdata('error')): ?>
+        <h3 style="color: red;">
+            <?= session()->getFlashdata('error') ?>
+        </h3>
+    <?php endif; ?>
     <?php if (!empty($users)): ?>
         <h1>Users</h1>
         <table cellpadding="5" border="1">
@@ -19,6 +28,7 @@
                     <th>Email</th>
                     <th>Contact Number</th>
                     <th>Address</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +42,14 @@
                         <td><?= esc($user['email']) ?></td>
                         <td><?= esc($user['contact_number']) ?></td>
                         <td><?= esc($user['address']) ?></td>
+                        <td>
+                            <!-- <form action="<?= base_url('a/user-record/delete/' . $user['id']) ?>" method="post" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                <button type="submit">Edit</button>
+                            </form> -->
+                            <form action="<?= base_url('a/user-record/delete/' . $user['id']) ?>" method="post" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

@@ -22,3 +22,4 @@ $routes->get('/u/logout', 'LoginController::logout');
 
 // Admin
 $routes->get('/a/user-record', 'AdminController::userRecord');
+$routes->post('/a/user-record/delete/(:num)', 'AdminController::deleteUser/$1');
