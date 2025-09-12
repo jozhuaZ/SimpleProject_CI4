@@ -25,11 +25,17 @@ class UserModel extends Model
 
     protected function hashPassword(array $data)
     {
-        if (isset($data['data']['password'])) {
-            $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_BCRYPT);
+        if (!empty($data['data']['password'])) {
+            if (!password_get_info($data['data']['password'])['algo']) {
+                $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_BCRYPT);
+            }
+        } else {
+            // if no password provided in update, remove it from the update array
+            unset($data['data']['password']);
         }
         return $data;
     }
+
 
     public function verifyUser(string $email, string $password)
     {
@@ -78,6 +84,16 @@ class UserModel extends Model
     {
         try {
             return $this->delete($id) !== false;
+        } catch (\Throwable $e) {
+            log_message('error', $e->getMessage());
+            return false;
+        }
+    }
+
+    public function updateUserById(int $id, array $newUserData): bool
+    {
+        try {
+            return $this->update($id, $newUserData) !== false;
         } catch (\Throwable $e) {
             log_message('error', $e->getMessage());
             return false;
