@@ -15,7 +15,7 @@ class LoginController extends BaseController
     public function loginUser()
     {
         try {
-            $request = service('request');
+            $request = request();
             $session = session();
 
             if (empty($request->getPost('email'))) {
@@ -40,6 +40,19 @@ class LoginController extends BaseController
                     'isLoggedIn' => true,
                 ];
                 $session->set($sessionData);
+                // $session->set([
+                //     'user' => [
+                //         'user_id' => $user['id'],
+                //         'firstname' => $user['firstname'],
+                //         'middlename' => $user['middlename'],
+                //         'lastname' => $user['lastname'],
+                //         'address' => $user['address'],
+                //         'contact_number' => $user['contact_number'],
+                //         'email' => $user['email'],
+                //         'username' => $user['username'],
+                //         'isLoggedIn' => true,
+                //     ]
+                //     ]);
                 return redirect()->to(base_url('/'))->with('success', 'Welcome back ' . $sessionData['username']);
             }
             return redirect()->to(base_url('login'))->withInput()->with('error', 'No user found.');

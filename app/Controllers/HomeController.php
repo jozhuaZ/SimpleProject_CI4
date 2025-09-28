@@ -13,6 +13,8 @@ class HomeController extends BaseController
             return redirect()->to('/login')->with('error', 'You must log in first.');
         }
 
+        // $data['user'] = (object) session()->get('user');
+
         $data['user'] = [
             'id'             => $session->get('user_id'),
             'firstname'      => $session->get('firstname'),
